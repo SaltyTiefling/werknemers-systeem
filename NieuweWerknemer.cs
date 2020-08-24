@@ -21,11 +21,10 @@ namespace werknemers_systeem
         private void NieuweWerknemer_Load(object sender, EventArgs e)
         {
             txtNaam_TextChanged(sender, e);
-            cbContract.Items.Add(Salaris.contracttype.Maand);
-            cbContract.Items.Add(Salaris.contracttype.Week);
+            cbContract.DataSource = Enum.GetValues(typeof(Salaris.contracttype));
+            cbContract.SelectedIndex = 0;
 
             txtLand.Text = nieuweWerknemer.moederland;
-            cbContract.SelectedIndex = 0;
         }
 
         private void txtNaam_TextChanged(object sender, EventArgs e)
