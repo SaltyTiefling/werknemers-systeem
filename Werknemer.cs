@@ -18,7 +18,10 @@ namespace werknemers_systeem
             if (salaris != null) this.salaris = salaris;
             this.moederland = moederland;
         }
-
+        public virtual double BerekenNetto()
+        {
+            return Math.Round((salaris.bruttoBedrag - (salaris.bruttoBedrag / 100 * salaris.percentage)), 2);
+        }
         public override string ToString()
         {
             return naam;

@@ -20,7 +20,7 @@ namespace werknemers_systeem
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            Werknemer geert = new Werknemer("Geert", new Salaris(contract: Salaris.contracttype.Week));
+            Werknemer geert = new Programeur("Geert", new Salaris(contract: Salaris.contracttype.Week));
             Werknemer frank = new Werknemer("Frank", new Salaris(2200,Salaris.contracttype.Maand));
             Werknemer daniel = new Werknemer("Daniel",new Salaris(contract: Salaris.contracttype.Week), moederland: "Nederland");
             Werknemer sofia = new Werknemer("Sofia",new Salaris(3110, Salaris.contracttype.Maand), "Nederland");
@@ -79,9 +79,14 @@ namespace werknemers_systeem
         {
             if (lbxWerknemers.DataSource != null)
             {
-                txtSamenvatting.Text = $"{(lbxWerknemers.SelectedItem as Werknemer).naam} {Environment.NewLine}"
-                + $"{(lbxWerknemers.SelectedItem as Werknemer).moederland} {Environment.NewLine}"
-                + $"{(lbxWerknemers.SelectedItem as Werknemer).salaris}";
+                txtSamenvatting.Text = $"{lbxWerknemers.SelectedItem}{Environment.NewLine}"
+                + $"{(lbxWerknemers.SelectedItem as Werknemer).moederland}{Environment.NewLine}"
+                + $"{(lbxWerknemers.SelectedItem as Werknemer).salaris}{Environment.NewLine}"
+                + $"Netto: {(lbxWerknemers.SelectedItem as Werknemer).BerekenNetto()}";
+                if (lbxWerknemers.SelectedItem.GetType() == typeof(Programeur))
+                {
+                    txtSamenvatting.AppendText($"{Environment.NewLine}talen: {(lbxWerknemers.SelectedItem as Programeur).PrintoutProgrameertalen()}");
+                }
             }
         }
 
